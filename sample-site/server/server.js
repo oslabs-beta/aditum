@@ -1,8 +1,11 @@
+// loads environment variables from a .env file into process.env
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
 const db = require('./models/db.js');
 const PORT = 3000;
+
 
 // flow test for incoming requests
 app.use((req, res, next) => {

@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
 const productsTable = require('./productModel.js');
 
-// URI to sql database hosted on ElephantSQL
-const PG_URI= "postgres://mhxzpxbj:UgdmVN4tsivjnyJARaN50U7ITOz87FCl@rajje.db.elephantsql.com:5432/mhxzpxbj";
+// user should add own database connection to .env file
+const { PG_URI } = process.env;
 
 // creating a pool to avoid overloading server with multiple queries
 const pool = new Pool({
