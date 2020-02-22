@@ -1,0 +1,160 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.currentPageTitle {
+  text-align: center;
+  
+}
+
+.product_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  border-radius: 1%;
+  border: 1px solid lightblue;
+  margin: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 2px 1px rgba(230,230,250, .9);
+
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.buy_button {
+  max-width: 10em;
+  background-color: rgba(230,230,250, .9);
+  color: dodgerblue;
+}
+
+img#coffee {
+  height: 95vh;
+}
+
+#about {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+img#shape {
+  align-self: flex-end;
+  transform: rotate(90deg);
+  height: 35vh;
+  margin-right: 5em;
+  margin-top: 5em;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(73, 79, 82);
+  color: white;
+}
+
+.nav-links{
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.linkColor{
+  color: white;
+}
+
+/* Home Page Styles */
+
+#sidebar {
+  grid-area: sidebar;
+  padding: 2em;
+}
+
+#main-content {
+  grid-area: main;
+  padding: 2em;
+}
+
+#footer {
+  grid-area: footer;
+  padding: 1em;
+  text-align: right;
+}
+
+#photo-sb {
+  grid-area: photos;
+  padding: 2em;
+}
+
+#homepage-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "photos main main main sidebar"
+  "photos main main main sidebar"
+  "photos main main main sidebar"
+  "footer footer footer footer footer";
+}
+
+.article {
+  margin: 1em;
+  display: flex;
+  border-bottom: 1px solid lightgray;
+}
+
+.article p {
+  margin: .5em 0;
+}
+
+.article span {
+  font-style: italic;
+}
+
+.article-img {
+  width: 15%;
+  border-radius: 100%;
+  margin-bottom: .5em;
+}
+
+.sb-article {
+  margin-top: 1em;
+}
+
+.cheese-photo {
+  width: 80%;
+  text-align: center;
+  margin: 1em 0;
+}
+
+#footer ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#footer li {
+  list-style-type: none;
+  margin-left: 1.5em;
+}
