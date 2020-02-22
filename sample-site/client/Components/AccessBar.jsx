@@ -25,7 +25,6 @@
 
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown-aria';
-import styles from '../css/dropdown.js';
 
 export default class AccessBar extends Component {
   constructor(props) {
@@ -83,16 +82,6 @@ export default class AccessBar extends Component {
   }
 
   render() {
-    // default style, come back later to modularize and add other styles
-    const barStyle =  {
-      display: 'flex',
-      paddingTop: '.1em',
-      paddingBottom: '.1em',
-      paddingLeft: '5em',
-      alignItems: 'center',
-      fontSize: '.8em',
-      backgroundColor: 'gray',
-    };
 
     // render the hidden h1
     if (this.state.isHidden) {
@@ -118,14 +107,38 @@ export default class AccessBar extends Component {
         <label htmlFor='accessibility-nav-bar'> Jump to: </label>
         <div id='accessibility-nav-bar'>
           <Dropdown
-            options={options}
-            style={styles}
+            options={ options }
+            style={ activeComponentDDStyle }
             placeholder='Sections of this page'
             ariaLabel='Navigation Assistant'
-            setSelected={this.setFocus}
+            setSelected={ this.setFocus }
           />
         </div>
       </div>
     );
   }
+}
+  /** Style for entire AccessBar **/
+    const barStyle =  {
+      display: 'flex',
+      paddingTop: '.1em',
+      paddingBottom: '.1em',
+      paddingLeft: '5em',
+      alignItems: 'center',
+      fontSize: '.8em',
+      backgroundColor: 'gray',
+    };
+/** Style for Dropdown component **/
+const activeComponentDDStyle = {
+  DropdownButton: base => ({
+    ...base,
+    margin: '5px',
+    border: '1px solid',
+    fontSize: '.5em',
+  }),
+  OptionContainer: base => ({
+    ...base,
+    margin: '5px',
+    fontSize: '.5em',
+  }),
 }
