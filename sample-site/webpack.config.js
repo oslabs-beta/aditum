@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   devServer: {
     publicPath: '/build/',
     // add proxy later
@@ -14,7 +15,6 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
-  mode: process.env.NODE_ENV,
   module: {
     rules: [
       { // rule for babel-loader and jsx/react files
