@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/oslabs-beta/aditum/issues"
   },
-  "homepage": "https://github.com/oslabs-beta/aditum#readme"
+  "homepage": "https://github.com/oslabs-beta/aditum#readme",
+  "dependencies": {
+    "react-dropdown-aria": "^1.51",
+  }
 }
