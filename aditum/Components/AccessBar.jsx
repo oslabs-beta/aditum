@@ -82,16 +82,6 @@ export default class AccessBar extends Component {
   }
 
   render() {
-    // default style, come back later to modularize and add other styles
-    const barStyle =  {
-      display: 'flex',
-      paddingTop: '.1em',
-      paddingBottom: '.1em',
-      paddingLeft: '5em',
-      alignItems: 'center',
-      fontSize: '.8em',
-      backgroundColor: 'gray',
-    };
 
     // render the hidden h1
     if (this.state.isHidden) {
@@ -128,7 +118,16 @@ export default class AccessBar extends Component {
     );
   }
 }
-
+  /** Style for entire AccessBar **/
+    const barStyle =  {
+      display: 'flex',
+      paddingTop: '.1em',
+      paddingBottom: '.1em',
+      paddingLeft: '5em',
+      alignItems: 'center',
+      fontSize: '.8em',
+      backgroundColor: 'gray',
+    };
 /** Style for Dropdown component **/
 const activeComponentDDStyle = {
   DropdownButton: base => ({
