@@ -6,6 +6,7 @@ import Store from './Store.jsx';
 import AccessBar from './AccessBar.jsx';
 import MainContainer from './MainContainer.jsx';
 // import Review from './Review.jsx'
+import wrapper from './Wrapper.jsx'
 
 
 class Home extends Component {
@@ -54,8 +55,8 @@ class Home extends Component {
           <Nav />
           <Switch >
             <Route exact path="/" component={MainContainer}/>
-            <Route exact path="/about" component={About}/>
-            <Route exact path ='/store' component={Store}/>
+            <Route exact path="/about" component={wrapper(About)}/>
+            <Route exact path ='/store' component={wrapper(Store)}/>
           </Switch>
           {/* 
           <Route exact path ='/review' component={Review}/> */}
