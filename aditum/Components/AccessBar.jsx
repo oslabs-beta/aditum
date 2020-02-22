@@ -25,7 +25,6 @@
 
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown-aria';
-import styles from '../css/dropdown.js';
 
 export default class AccessBar extends Component {
   constructor(props) {
@@ -118,14 +117,29 @@ export default class AccessBar extends Component {
         <label htmlFor='accessibility-nav-bar'> Jump to: </label>
         <div id='accessibility-nav-bar'>
           <Dropdown
-            options={options}
-            style={styles}
+            options={ options }
+            style={ activeComponentDDStyle }
             placeholder='Sections of this page'
             ariaLabel='Navigation Assistant'
-            setSelected={this.setFocus}
+            setSelected={ this.setFocus }
           />
         </div>
       </div>
     );
   }
+}
+
+/** Style for Dropdown component **/
+const activeComponentDDStyle = {
+  DropdownButton: base => ({
+    ...base,
+    margin: '5px',
+    border: '1px solid',
+    fontSize: '.5em',
+  }),
+  OptionContainer: base => ({
+    ...base,
+    margin: '5px',
+    fontSize: '.5em',
+  }),
 }
