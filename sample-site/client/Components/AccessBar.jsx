@@ -57,35 +57,6 @@ class AccessBar extends Component {
     this.myRef.current.focus();
   };
 
-  // location changes using the withRouter HOC
-  componentDidUpdate(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      setTimeout(() => {
-
-        // able to run the same functionality to change the dropdown
-        const ariaNodes = document.querySelectorAll('[aria-labelledby]');
-        console.log(ariaNodes);
-    
-        let dropDownValues = {};
-    
-        ariaNodes.forEach(node => {
-          dropDownValues[node.getAttribute('aria-labelledby')] = node.getAttribute('id');
-        });
-    
-        console.log(dropDownValues);
-    
-        // adds configurations prop to state
-        this.setState({
-          config: dropDownValues,
-        });
-
-
-      }, 2000)
-    
-
-  }
-}
-
   componentDidMount() {
     // adding multiple key down events
     // object to store key values that are currently being pressed
@@ -115,7 +86,6 @@ class AccessBar extends Component {
     });
 
     const ariaNodes = document.querySelectorAll('[aria-labelledby]');
-    console.log(ariaNodes);
 
     let dropDownValues = {};
 
@@ -123,30 +93,41 @@ class AccessBar extends Component {
       dropDownValues[node.getAttribute('aria-labelledby')] = node.getAttribute('id');
     });
 
-    console.log(dropDownValues);
-
     // adds configurations prop to state
     this.setState({
       config: dropDownValues,
     });
 
-
-    // handling route change, to allow for different items in the dropdown
-    // componentWillReceiveProps() {
-    //   if ()
-    // }
-
   }
 
-  componentDidUpdate() {
+  // location changes using the withRouter HOC
+  componentDidUpdate(newProps) {
     // if access bar is rendered to screen, point focus to the access bar ref
     if (this.state.isHidden === false) {
       this.accessBarRef.current.focus();
     }
+
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      setTimeout(() => {
+        // able to run the same functionality to change the dropdown
+        const ariaNodes = document.querySelectorAll('[aria-labelledby]');
+        console.log(ariaNodes);
+    
+        let dropDownValues = {};
+    
+        ariaNodes.forEach(node => {
+          dropDownValues[node.getAttribute('aria-labelledby')] = node.getAttribute('id');
+        });
+    
+        // adds configurations prop to state
+        this.setState({
+          config: dropDownValues,
+        });
+      }, 2000)
+  }
   }
 
   render() {
-
     // render the hidden h1
     if (this.state.isHidden) { 
       return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
