@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './Nav.jsx'
 import About from './About.jsx';
 import Store from './Store.jsx';
-import AccessBar from './AccessBar.jsx';
+import AccessBar from '../../../aditum/Components/AccessBar.jsx';
 import MainContainer from './MainContainer.jsx';
 // import Review from './Review.jsx'
-import wrapper from './Wrapper.jsx'
+import wrapper from '../../../aditum/Components/Wrapper.jsx'
 
 
 class Home extends Component {

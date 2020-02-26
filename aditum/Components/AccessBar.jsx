@@ -3,8 +3,7 @@
  * importing an aria-compliant dropdown package
  * able to target focus with the setSelected option in that package
  * 
- * 
- * @todo Be able to show on combination of button presses
+ *
  * @todo Conditional rendering inside the render method that initially renders an h1 that tells screen readers how to use the navigation bar
  * 
  * @todo Be able to switch color themes for colorblind/ high contrast 
