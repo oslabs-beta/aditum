@@ -4,8 +4,8 @@
  * able to target focus with the setSelected option in that package
  * 
  * 
- * @todo Be able to show on combination of button presses
- * @todo Conditional rendering inside the render method that initially renders an h1 that tells screen readers how to use the navigation bar
+ * @todo Be able to show on combination of button presses (done)
+ * @todo Conditional rendering inside the render method that initially renders an h1 that tells screen readers how to use the navigation bar (done)
  * 
  * @todo Be able to switch color themes for colorblind/ high contrast 
  * @todo Route handling dropdown for other pages on site
@@ -36,7 +36,10 @@ export default class AccessBar extends Component {
       isHidden: true,
     }
     this.setFocus = this.setFocus.bind(this);
+    // creates refs for each section in the dropdown menu
     this.myRef = React.createRef();
+    // creates ref for autofocus of access bar
+    this.accessBarRef = React.createRef();
   }
 
   // method that directs focus to the selected element of the dropdown
@@ -52,12 +55,15 @@ export default class AccessBar extends Component {
   };
 
   componentDidMount() {
-    // adding multiple key down events 
+    // adding multiple key down events
+    // object to store key values that are currently being pressed
     let keyDownObj = {};
 
     document.addEventListener('keydown', (event) => {
+      // adds key value to keyDownObj object upon keydown
       keyDownObj[event.key] = true;
 
+      // if the combination of Alt and / are found in the object, toggle isHidden in state
       if (keyDownObj['Alt'] && (keyDownObj['/'] || keyDownObj['÷'])) {
         if (this.state.isHidden) {
           this.setState({
@@ -71,6 +77,7 @@ export default class AccessBar extends Component {
       }
     });
 
+    // clear the keyDownObj once keys are no longer actively pressed
     document.addEventListener('keyup', () =>{
       keyDownObj = {};
     });
@@ -81,10 +88,18 @@ export default class AccessBar extends Component {
     });
   }
 
+  componentDidUpdate() {
+    // if access bar is rendered to screen, point focus to the access bar ref
+    if (this.state.isHidden === false) {
+      this.accessBarRef.current.focus();
+    }
+  }
+
   render() {
 
     // render the hidden h1
     if (this.state.isHidden) {
+      // styles hiding the h1 from view
       const hiddenH1Styles = {
         display: 'block',
         overflow: 'hidden',
@@ -104,14 +119,14 @@ export default class AccessBar extends Component {
 
     return (
       <div className ='ally-nav-area' style={ barStyle }>
-        <label htmlFor='accessibility-nav-bar'> Jump to: </label>
-        <div id='accessibility-nav-bar'>
+        <label htmlFor='accessibility-nav-bar' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
+        <div id='accessibility-nav-bar' >
           <Dropdown
             options={ options }
             style={ activeComponentDDStyle }
             placeholder='Sections of this page'
             ariaLabel='Navigation Assistant'
-            setSelected={ this.setFocus }
+            setSelected={ this.setFocus } 
           />
         </div>
       </div>
