@@ -19,7 +19,7 @@
 
  const Sidebar = (props) => {
    return (
-     <section id='sidebar'>
+     <section id='sidebar' aria-labelledby="Sidebar">
        <h1>Sidebar</h1>
        <div className='sb-article'>
           <h2>SubHeading</h2>
@@ -43,7 +43,7 @@
      articleList.push(<Article key={i} />)
    }
    return (
-     <section id='main-content'>
+     <section id='main-content' aria-labelledby='Main Content'>
        <h1>Main Content - Article Section</h1>
        {articleList}
      </section>
@@ -65,7 +65,7 @@
 
  const Photos = (props) => {
    return (
-     <section id='photo-sb'>
+     <section id='photo-sb' aria-labelledby="Photos Sidebar">
        <h1>Photo Sidebar</h1>
        <img className='cheese-photo' src = 'https://images.unsplash.com/photo-1566454825481-4e48f80aa4d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' alt='cheese selction at market'></img>
        <img className='cheese-photo' src='https://images.unsplash.com/photo-1578932599431-eb1333a0069f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' alt='charcuterie spread'></img>
@@ -78,7 +78,7 @@
 
  const Footer = (props) => {
    return (
-     <footer id='footer'>
+     <footer id='footer' aria-labelledby= "AdiStore Footer">
        <h2>This is a footer</h2>
        <ul>
          <li>Information</li>
