@@ -50,7 +50,7 @@ class Home extends Component {
 
     return (
       <div onKeyDown={ this.handleKeydown }>
-        <Router>
+        <Router >
         <AccessBar config={config}/>
           <Nav />
           <Switch >
@@ -58,8 +58,6 @@ class Home extends Component {
             <Route exact path="/about" component={wrapper(About)}/>
             <Route exact path ='/store' component={wrapper(Store)}/>
           </Switch>
-          {/* 
-          <Route exact path ='/review' component={Review}/> */}
         </Router>
         </div>
     );

@@ -10,8 +10,8 @@ class About extends Component {
   render() {
     return (
       <div id='about'>
-        <img id='coffee' src='https://images.unsplash.com/photo-1518966377293-74c63a1ec149?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2800&q=80' alt='person pouring coffee into mug'></img>
-        <div className='wrapper'>
+        <img id='coffee' src='https://images.unsplash.com/photo-1518966377293-74c63a1ec149?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2800&q=80' alt='person pouring coffee into mug' aria-labelledby='Coffee Image'></img>
+        <div id='about-main-content' className='wrapper' aria-labelledby='About Page Main Content'>
           <div className='text'>
             <h1>About AdiStore</h1>
             <p><strong>Our mission?</strong> To provide fare-trade, delicious coffee to the tired masses of Codesmith cohorts 16 and 17.</p>

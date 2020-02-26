@@ -43,7 +43,7 @@
     // create products array, and render the fake products
     if (loading) {
       return (
-        <h3>We loading baby</h3>
+        <h3 aria-labelledby="loading-baby">We loading baby</h3>
       );
     }
 
@@ -57,7 +57,7 @@
       }
 
       return (
-        <main>
+        <main id='adistore' aria-labelledby='ADISTORE'>
           <h2 className='currentPageTitle'>AdiStore</h2>
           <div className='product_container'>
           { productsArr }
