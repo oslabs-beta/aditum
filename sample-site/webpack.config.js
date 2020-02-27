@@ -9,7 +9,6 @@ module.exports = {
       '/products': 'http://localhost:3000',
     }
   },
-
   entry: path.resolve(__dirname, './client/index.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -32,8 +31,20 @@ module.exports = {
         // rule for css
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-      }
+      },
+      {
+        // rule to load images
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
+      },
     ]
-  }
-
+  },
+  devServer: {
+    hot: true,
+    publicPath: '/build/',
+    historyApiFallback: true,
+    proxy: {
+      '/assets': 'http://localhost:3000',
+    },
+  },
 }

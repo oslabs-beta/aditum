@@ -27,7 +27,7 @@
 */
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown-aria';
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 
 class AccessBar extends Component {
   constructor(props) {
@@ -56,6 +56,24 @@ class AccessBar extends Component {
     this.myRef.current = currentElement;
     this.myRef.current.focus();
   };
+
+  // method that changes color of entire document.body to black-white to support colorblind users
+  onBWButtonKeyDown (btn) {
+        let ariaBtnStatus = btn.target.getAttribute('aria-pressed');
+        console.log('aria-pressed attribute ', btn.target.getAttribute('aria-pressed'))
+       
+        // if aria BW contrast button is pressed change aria-pressed label to true
+        if (ariaBtnStatus === 'false') {
+          btn.target.setAttribute('aria-pressed', 'true');
+          document.body.style.filter = 'grayscale(1)';
+    
+        }
+        // if aria BW contrast button is pressed change aria-pressed label to false
+        if (ariaBtnStatus === 'true') {
+          btn.target.setAttribute('aria-pressed', 'false');
+          document.body.style.filter = null;
+        }
+      }
 
   componentDidMount() {
     // adding multiple key down events
@@ -144,8 +162,8 @@ class AccessBar extends Component {
 
     return (
       <div className ='ally-nav-area' style={ barStyle }>
-        <label htmlFor='accessibility-nav-bar' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
-        <div id='accessibility-nav-bar' >
+        <label htmlFor='component-dropdown' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
+        <div id='component-dropdown' >
           <Dropdown
             options={ options }
             style={ activeComponentDDStyle }
@@ -154,6 +172,17 @@ class AccessBar extends Component {
             setSelected={ this.setFocus } 
           />
         </div>
+        <div id='contrast-BW'>
+          <button 
+            style={ contrastBtnStyle }
+            aria-pressed='false' 
+            aria-label='Click button to change page contrast to black/white' 
+            id='btn-BW'
+            onKeyDown={ this.onBWButtonKeyDown }
+            onClick={ this.onBWButtonKeyDown }>
+            <img src='../assets/contrast.png' style={contrastImgStyle}></img>
+          </button>
+         </div>
       </div>
     );
   }
@@ -191,5 +220,16 @@ const hiddenH1Styles = {
   whiteSpace: 'nowrap',
   fontSize: '0.01px',
 }
+
+// style for the button that controlls black/white contract
+const contrastBtnStyle = {
+  backgroundColor: 'transparent',
+  border: '0px',
+};
+
+// style to center the image in the black/white contract button
+const contrastImgStyle = {
+  display: 'inline-block',
+};
 
 export default withRouter(AccessBar);

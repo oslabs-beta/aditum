@@ -6,7 +6,6 @@ const path = require('path');
 const db = require('./models/db.js');
 const PORT = 3000;
 
-
 // flow test for incoming requests
 app.use((req, res, next) => {
   console.log(`
@@ -17,6 +16,9 @@ app.use((req, res, next) => {
   `);
   return next();
 });
+
+app.use('/assets', express.static(path.resolve(__dirname, '../client/assets/')));
+
 
 // putting query in here since we only have one, will move to controller if we end up with more
 app.get('/products', (req, res) => {
@@ -35,9 +37,6 @@ app.get('/products', (req, res) => {
 app.use('/build', (req, res) => res.sendFile((path.resolve(__dirname, '../build/bundle.js'))));
 
 app.use((req, res) => res.sendFile(path.resolve(__dirname, 'index.html')));
-
-
-
 
 app.use((err, req, res, next) => {
   const defaultErr = {
