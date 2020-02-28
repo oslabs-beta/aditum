@@ -1,0 +1,39 @@
+{
+  "name": "aditum",
+  "version": "1.1.0",
+  "description": "A accessible component library to manage focus in React single page applications",
+  "main": "./bundle/bundle.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "rm -rf ./bundle && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/aditum.git"
+  },
+  "keywords": [
+    "accessibility",
+    "react"
+  ],
+  "author": "Nicole Abramowski, William Chen, Kelvin Cuesta, Benjamin Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/aditum/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/aditum#readme",
+  "dependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "react-dropdown-aria": "^1.51",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+}
