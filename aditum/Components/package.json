@@ -2,13 +2,14 @@
   "name": "aditum",
   "version": "1.1.0",
   "description": "A accessible component library to manage focus in React single page applications",
-  "main": "./bundle/bundle.js",
+  "main": "./dist/index.js",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
+    "start": "npx babel ./src --watch --out-dir ./dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "rm -rf ./bundle && npm run build"
+    "prepublish": "babel ./src --out-dir ./dist"
   },
   "repository": {
     "type": "git",
@@ -25,15 +26,17 @@
   },
   "homepage": "https://github.com/oslabs-beta/aditum#readme",
   "dependencies": {
-    "@babel/core": "^7.8.6",
-    "@babel/preset-env": "^7.8.6",
-    "@babel/preset-react": "^7.8.3",
     "react-dropdown-aria": "^1.51",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "react-router": "^5.1.2"
   },
   "peerDependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-react": "^7.8.3"
+  }
 }
