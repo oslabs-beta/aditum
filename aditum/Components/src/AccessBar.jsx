@@ -4,8 +4,8 @@
  * able to target focus with the setSelected option in that package
  * 
  * 
- * @todo Be able to show on combination of button presses
- * @todo Conditional rendering inside the render method that initially renders an h1 that tells screen readers how to use the navigation bar
+ * @todo Be able to show on combination of button presses (done)
+ * @todo Conditional rendering inside the render method that initially renders an h1 that tells screen readers how to use the navigation bar (done)
  * 
  * @todo Be able to switch color themes for colorblind/ high contrast 
  * @todo Route handling dropdown for other pages on site
@@ -18,15 +18,18 @@
  * 3. to unhide the bar and refocus, press option + '/'
  * 
  * 
+ *  Handling dynamic filling
+ *  1.Developer should use aria-labelledby to denote sections of the page they want to transfer focus to
+ *  2. Can use document.querySelector('[aria-labelledBy]) to grab an element with that attribute
+ * 
  * 
  *
 */
-
-
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown-aria';
+import { withRouter } from 'react-router'
 
-export default class AccessBar extends Component {
+class AccessBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +39,10 @@ export default class AccessBar extends Component {
       isHidden: true,
     }
     this.setFocus = this.setFocus.bind(this);
+    // creates refs for each section in the dropdown menu
     this.myRef = React.createRef();
+    // creates ref for autofocus of access bar
+    this.accessBarRef = React.createRef();
   }
 
   // method that directs focus to the selected element of the dropdown
@@ -52,12 +58,15 @@ export default class AccessBar extends Component {
   };
 
   componentDidMount() {
-    // adding multiple key down events 
+    // adding multiple key down events
+    // object to store key values that are currently being pressed
     let keyDownObj = {};
 
     document.addEventListener('keydown', (event) => {
+      // adds key value to keyDownObj object upon keydown
       keyDownObj[event.key] = true;
 
+      // if the combination of Alt and / are found in the object, toggle isHidden in state
       if (keyDownObj['Alt'] && (keyDownObj['/'] || keyDownObj['÷'])) {
         if (this.state.isHidden) {
           this.setState({
@@ -71,32 +80,63 @@ export default class AccessBar extends Component {
       }
     });
 
+    // clear the keyDownObj once keys are no longer actively pressed
     document.addEventListener('keyup', () =>{
       keyDownObj = {};
     });
-    
+
+    const ariaNodes = document.querySelectorAll('[aria-labelledby]');
+
+    let dropDownValues = {};
+
+    ariaNodes.forEach(node => {
+      dropDownValues[node.getAttribute('aria-labelledby')] = node.getAttribute('id');
+    });
+
     // adds configurations prop to state
     this.setState({
-      config: this.props.config,
+      config: dropDownValues,
     });
+
+  }
+
+  // location changes using the withRouter HOC
+  componentDidUpdate(newProps) {
+    // if access bar is rendered to screen, point focus to the access bar ref
+    if (this.state.isHidden === false) {
+      this.accessBarRef.current.focus();
+    }
+
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      setTimeout(() => {
+        // able to run the same functionality to change the dropdown
+        const ariaNodes = document.querySelectorAll('[aria-labelledby]');
+        console.log(ariaNodes);
+    
+        let dropDownValues = {};
+    
+        ariaNodes.forEach(node => {
+          dropDownValues[node.getAttribute('aria-labelledby')] = node.getAttribute('id');
+        });
+    
+        // adds configurations prop to state
+        this.setState({
+          config: dropDownValues,
+        });
+      }, 2000)
+  }
   }
 
   render() {
-
     // render the hidden h1
-    if (this.state.isHidden) {
-      const hiddenH1Styles = {
-        display: 'block',
-        overflow: 'hidden',
-        textIndent: '100%',
-        whiteSpace: 'nowrap',
-        fontSize: '0.01px',
-      }
+    if (this.state.isHidden) { 
       return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
     }
 
+    const { config } = this.state;
+
     // sets labels for our dropdown menu
-    const dropdownKeys = Object.keys(this.props.config);
+    const dropdownKeys = Object.keys(config);
     const options = [];
     for (let i = 0; i < dropdownKeys.length; i++) {
       options.push({ value: dropdownKeys[i]});
@@ -104,30 +144,33 @@ export default class AccessBar extends Component {
 
     return (
       <div className ='ally-nav-area' style={ barStyle }>
-        <label htmlFor='accessibility-nav-bar'> Jump to: </label>
-        <div id='accessibility-nav-bar'>
+        <label htmlFor='component-dropdown' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
+        <div id='component-dropdown' >
           <Dropdown
             options={ options }
             style={ activeComponentDDStyle }
             placeholder='Sections of this page'
             ariaLabel='Navigation Assistant'
-            setSelected={ this.setFocus }
+            setSelected={ this.setFocus } 
           />
         </div>
       </div>
     );
   }
 }
-  /** Style for entire AccessBar **/
-    const barStyle =  {
-      display: 'flex',
-      paddingTop: '.1em',
-      paddingBottom: '.1em',
-      paddingLeft: '5em',
-      alignItems: 'center',
-      fontSize: '.8em',
-      backgroundColor: 'gray',
-    };
+
+/** Style for entire AccessBar **/
+const barStyle =  {
+  display: 'flex',
+  paddingTop: '.1em',
+  paddingBottom: '.1em',
+  paddingLeft: '5em',
+  alignItems: 'center',
+  zIndex: '100',
+  position: 'sticky',
+  fontSize: '.8em',
+  backgroundColor: 'gray',
+};
 /** Style for Dropdown component **/
 const activeComponentDDStyle = {
   DropdownButton: base => ({
@@ -142,3 +185,13 @@ const activeComponentDDStyle = {
     fontSize: '.5em',
   }),
 }
+/** Style for hiddenH1 */
+const hiddenH1Styles = {
+  display: 'block',
+  overflow: 'hidden',
+  textIndent: '100%',
+  whiteSpace: 'nowrap',
+  fontSize: '0.01px',
+}
+
+export default withRouter(AccessBar);
