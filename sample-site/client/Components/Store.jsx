@@ -3,7 +3,6 @@
  * will need to be class component for the react router focus management 
  * 
  * 
- * @note state right now is in the client side, but eventually update this component to get state from the database
  */
 
  import React, { Component } from 'react';
