@@ -1,4 +1,4 @@
-import AccessBar from './AccessBar.jsx';
-import FocusWrapper from './FocusWrapper.jsx';
+import AccessBar from '../dist/AccessBar.js';
+import FocusWrapper from '../dist/FocusWrapper.js';
 
 export { AccessBar, FocusWrapper };

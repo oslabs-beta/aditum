@@ -39,7 +39,6 @@ class AccessBar extends Component {
       isHidden: true,
     }
     this.setFocus = this.setFocus.bind(this);
-    this.onBWButtonKeyDown = this.onBWButtonKeyDown.bind(this);
     // creates refs for each section in the dropdown menu
     this.myRef = React.createRef();
     // creates ref for autofocus of access bar
@@ -57,25 +56,6 @@ class AccessBar extends Component {
     this.myRef.current = currentElement;
     this.myRef.current.focus();
   };
-
-  // method that changes color of entire document.body to black-white to support colorblind users
-  onBWButtonKeyDown (btn) {
-    console.log('btn.target ',btn.target)
-        let ariaBtnStatus = btn.target.getAttribute('aria-pressed');
-        console.log('aria-pressed attribute ', btn.target.getAttribute('aria-pressed'))
-       
-        // if aria BW contrast button is pressed change aria-pressed label to true
-        if (ariaBtnStatus === 'false') {
-          btn.target.setAttribute('aria-pressed', 'true');
-          document.body.style.filter = 'grayscale(1)';
-    
-        }
-        // if aria BW contrast button is pressed change aria-pressed label to false
-        if (ariaBtnStatus === 'true') {
-          btn.target.setAttribute('aria-pressed', 'false');
-          document.body.style.filter = null;
-        }
-      }
 
   componentDidMount() {
     // adding multiple key down events
@@ -174,17 +154,6 @@ class AccessBar extends Component {
             setSelected={ this.setFocus } 
           />
         </div>
-        <div id='contrast-BW'>
-          <button 
-            style={ contrastBtnStyle }
-            aria-pressed='false' 
-            aria-label='Click button to change page contrast to black/white' 
-            id='btn-BW'
-//             onKeyDown={ this.onBWButtonKeyDown }
-            onClick={ this.onBWButtonKeyDown }>
-            <img src='../assets/contrast.png' style={contrastImgStyle}></img>
-          </button>
-         </div>
       </div>
     );
   }
@@ -197,6 +166,8 @@ const barStyle =  {
   paddingBottom: '.1em',
   paddingLeft: '5em',
   alignItems: 'center',
+  zIndex: '100',
+  position: 'sticky',
   fontSize: '.8em',
   backgroundColor: 'gray',
 };
@@ -222,16 +193,5 @@ const hiddenH1Styles = {
   whiteSpace: 'nowrap',
   fontSize: '0.01px',
 }
-
-// style for the button that controlls black/white contract
-const contrastBtnStyle = {
-  backgroundColor: 'transparent',
-  border: '0px',
-};
-
-// style to center the image in the black/white contract button
-const contrastImgStyle = {
-  display: 'inline-block',
-};
 
 export default withRouter(AccessBar);
