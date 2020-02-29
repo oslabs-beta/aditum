@@ -27,18 +27,20 @@
 */
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown-aria';
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 
 class AccessBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       config: null,
+      navInfo: null,
       // if true render the hidden h1
       // otherwise render the accessibility bar
       isHidden: true,
     }
     this.setFocus = this.setFocus.bind(this);
+    this.changeView = this.changeView.bind(this);
     // creates refs for each section in the dropdown menu
     this.myRef = React.createRef();
     // creates ref for autofocus of access bar
@@ -56,6 +58,21 @@ class AccessBar extends Component {
     this.myRef.current = currentElement;
     this.myRef.current.focus();
   };
+
+  // method that changes view via dropdown click
+  changeView(e) {
+    // finds associated path of clicked element
+    let currentPath = this.state.navInfo[e];
+    // grabs all of the nav links in the nav bar
+    const accessLinks = document.querySelectorAll('.accessNavLinks');
+    // loops through to find the matching path
+    accessLinks.forEach(el => {
+      if (el.pathname === currentPath) {
+        // click that nav link
+        el.click();
+      }
+    })
+  }
 
   componentDidMount() {
     // adding multiple key down events
@@ -85,10 +102,12 @@ class AccessBar extends Component {
       keyDownObj = {};
     });
 
+    // selects all nodes with the aria attribute aria-labelledby
     const ariaNodes = document.querySelectorAll('[aria-labelledby]');
 
+    // initilize empty object to fill with aria nodes
     let dropDownValues = {};
-
+    // set values for our dropDownValues object
     ariaNodes.forEach(node => {
       dropDownValues[node.getAttribute('aria-labelledby')] = node.getAttribute('id');
     });
@@ -97,6 +116,21 @@ class AccessBar extends Component {
     this.setState({
       config: dropDownValues,
     });
+
+    // grabs the nodes from the navigation bar
+    const navNodes = document.querySelectorAll('.accessNavLinks')
+    
+    // initialize empty object for nav links
+    const navValues = {};
+    // set values for navValues
+    navNodes.forEach(el => {
+      navValues[el.text] = el.pathname;
+    })
+    // set navInfo in state to the navValues object
+    this.setState({
+      navInfo: navValues,
+    })
+
 
   }
 
@@ -111,7 +145,6 @@ class AccessBar extends Component {
       setTimeout(() => {
         // able to run the same functionality to change the dropdown
         const ariaNodes = document.querySelectorAll('[aria-labelledby]');
-        console.log(ariaNodes);
     
         let dropDownValues = {};
     
@@ -123,6 +156,7 @@ class AccessBar extends Component {
         this.setState({
           config: dropDownValues,
         });
+
       }, 2000)
   }
   }
@@ -133,7 +167,7 @@ class AccessBar extends Component {
       return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
     }
 
-    const { config } = this.state;
+    const { config, navInfo } = this.state;
 
     // sets labels for our dropdown menu
     const dropdownKeys = Object.keys(config);
@@ -142,16 +176,33 @@ class AccessBar extends Component {
       options.push({ value: dropdownKeys[i]});
     }
 
+    // sets labels for our dropdown menu
+    const navKeys = Object.keys(navInfo);
+    const navNames = [];
+    for (let i = 0; i < navKeys.length; i++) {
+      navNames.push({ value: navKeys[i]});
+    }
+
     return (
       <div className ='ally-nav-area' style={ barStyle }>
-        <label htmlFor='accessibility-nav-bar' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
-        <div id='accessibility-nav-bar' >
+        <label htmlFor='component-dropdown' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
+        <div id='component-dropdown' >
           <Dropdown
             options={ options }
             style={ activeComponentDDStyle }
             placeholder='Sections of this page'
             ariaLabel='Navigation Assistant'
             setSelected={ this.setFocus } 
+          />
+        </div>
+        <label htmlFor='page-dropdown'> Jump to page: </label>
+        <div id='page-dropdown' >
+          <Dropdown
+            options={ navNames }
+            style={ activeComponentDDStyle }
+            placeholder='Other pages on this site'
+            ariaLabel='Navigation Assistant'
+            setSelected={ this.changeView } 
           />
         </div>
       </div>
@@ -166,6 +217,8 @@ const barStyle =  {
   paddingBottom: '.1em',
   paddingLeft: '5em',
   alignItems: 'center',
+  zIndex: '100',
+  position: 'sticky',
   fontSize: '.8em',
   backgroundColor: 'gray',
 };
