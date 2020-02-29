@@ -1,6 +1,6 @@
 {
   "name": "aditum",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A accessible component library to manage focus in React single page applications",
   "main": "./dist/index.js",
   "publishConfig": {
