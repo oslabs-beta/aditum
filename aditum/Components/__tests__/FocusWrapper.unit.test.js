@@ -5,10 +5,9 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const MockComponent = () => <div />;
-MockComponent.displayName = 'MockComponent';
-
 describe('FocusWrapper component', () => {
+  const MockComponent = () => <div />;
+  MockComponent.displayName = 'MockComponent';
   const WrappedComponent = focusWrapper(MockComponent);
   const wrapper = mount(<WrappedComponent />);
 
