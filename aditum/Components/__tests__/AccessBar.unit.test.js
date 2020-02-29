@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('AccessBar component', () => {
-  test('renders', () => {
+  it('renders', () => {
     const wrapper = shallow(<AccessBar />);
 
     expect(wrapper.exists()).toBe(true);
