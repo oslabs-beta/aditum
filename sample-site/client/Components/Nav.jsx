@@ -5,13 +5,13 @@ function Nav() {
   return (
     <nav>
       <ul className="nav-links">
-        <Link className="linkColor" to="/">
+        <Link className="linkColor" className='accessNavLinks' to="/">
           <li>Home</li>
         </Link>
-        <Link className="linkColor" to="/about">
+        <Link className="linkColor" className='accessNavLinks' to="/about">
           <li>About</li>
         </Link>
-        <Link className="linkColor" to="/store">
+        <Link className="linkColor" className='accessNavLinks' to="/store">
           <li>Store</li>
         </Link>
         {/* <Link className="linkColor">
