@@ -185,25 +185,29 @@ class AccessBar extends Component {
 
     return (
       <div className ='ally-nav-area' style={ barStyle }>
-        <label htmlFor='component-dropdown' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
-        <div id='component-dropdown' >
-          <Dropdown
-            options={ options }
-            style={ activeComponentDDStyle }
-            placeholder='Sections of this page'
-            ariaLabel='Navigation Assistant'
-            setSelected={ this.setFocus } 
-          />
+        <div className = 'dropdown' style={ dropDownStyle }> 
+          <label htmlFor='component-dropdown' tabIndex='-1' ref={this.accessBarRef} > Jump to section: </label>
+          <div id='component-dropdown' >
+            <Dropdown
+              options={ options }
+              style={ activeComponentDDStyle }
+              placeholder='Sections of this page'
+              ariaLabel='Navigation Assistant'
+              setSelected={ this.setFocus } 
+            />
+          </div>
         </div>
-        <label htmlFor='page-dropdown'> Jump to page: </label>
-        <div id='page-dropdown' >
-          <Dropdown
-            options={ navNames }
-            style={ activeComponentDDStyle }
-            placeholder='Other pages on this site'
-            ariaLabel='Navigation Assistant'
-            setSelected={ this.changeView } 
-          />
+          <div className = 'dropdown' style={ dropDownStyle }> 
+          <label htmlFor='page-dropdown'> Jump to page: </label>
+          <div id='page-dropdown' >
+            <Dropdown
+              options={ navNames }
+              style={ activeComponentDDStyle }
+              placeholder='Other pages on this site'
+              ariaLabel='Navigation Assistant'
+              setSelected={ this.changeView } 
+            />
+          </div>
         </div>
       </div>
     );
@@ -217,11 +221,20 @@ const barStyle =  {
   paddingBottom: '.1em',
   paddingLeft: '5em',
   alignItems: 'center',
+  justifyContent: 'flex-start',
   zIndex: '100',
   position: 'sticky',
   fontSize: '.8em',
   backgroundColor: 'gray',
+  fontFamily: 'Roboto',
+  color: 'white'
 };
+
+const dropDownStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: '1em',
+}
 /** Style for Dropdown component **/
 const activeComponentDDStyle = {
   DropdownButton: base => ({
