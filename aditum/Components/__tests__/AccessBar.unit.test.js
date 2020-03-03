@@ -19,8 +19,8 @@ describe('AccessBar component', () => {
     // set dummy location within test to avoid location.pathname is undefined error
     const location = { pathname: '/' };
     const wrapper = shallow(
-        <AccessBar.WrappedComponent location={location}/>
-    );
+      <AccessBar.WrappedComponent location={location}/>
+  );
     // if AccessBar is hidden it should only render our invisible h1
     expect(wrapper.exists('#hiddenH1')).toEqual(true);
   })
@@ -37,3 +37,5 @@ describe('AccessBar component', () => {
     });
   });
 });
+
+
