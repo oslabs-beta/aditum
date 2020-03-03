@@ -5,13 +5,12 @@
  * *
  */
 
-import React from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import Dropdown from 'react-dropdown-aria';
-import { withRouter } from 'react-router'
+import { useHistory} from 'react-router-dom';
 
-const AccessBar = () => {
-
-  // state initialized to nulls and true for hidden
+const AccessBar2 = () => {
+  const pathname = useHistory().location.pathname;
   const [sectionInfo, setSectionInfo] = useState(null);
   const [navInfo, setNavInfo] = useState(null);
   const [isHidden, setIsHidden] = useState(true);
@@ -19,56 +18,69 @@ const AccessBar = () => {
   // creating the refs to change focus
   const sectionRef = useRef(null);
   const accessBarRef = useRef(null);
-
-  /**
-   * @todo change the logic here from id to aria-labelleBy  currently using id setFocus function
-   * */
+  
+  
+  // sets focus on the current page from the 1st dropdown
   const setFocus = e => {
-    const currentId = sectionInfo[e];
-    const currentElement = document.querySelector(`#${currentId}`);
+    const currentLabel = sectionInfo[e];
+    const currentElement = document.querySelector(`[aria-labelledBy='${currentLabel}']`);
     currentElement.tabIndex = -1;
-
     sectionRef.current = currentElement;
+    // can put a .click() after focus to focus with the enter button
+    // works, but gives error
     sectionRef.current.focus();
   };
 
-  // changeView function
+
+  // changes the page when select a link from the 2nd dropdown
   const changeView = e => {
     const currentPath = navInfo[e];
     const accessLinks = document.querySelectorAll('.accessNavLink');
-
     accessLinks.forEach(el => {
       if (el.pathname === currentPath) {
         el.click();
-      }
+      };
     });
   };
 
-  // eventListeners
-  let keyDownObj = {};
-
-  document.addEventListener('keydown', e => {
-    // adds key value to keyDownObj object upon keydown
-    keyDownObj[e.key] = true;
-    // if the combination of Alt and / are found in the object, toggle isHidden in state
-    if (keyDownObj['Alt'] && (keyDownObj['/'] || keyDownObj['÷'])) {
-      if (isHidden) setIsHidden(false); 
-      else setIsHidden(true);
+  // event handler to toggle visibility of AccessBar and set focus to it
+  const accessBarHandlerKeyDown = e => {
+    if (e.altKey && e.keyCode === 191) {
+      if (isHidden) {
+        setIsHidden(false)
+        accessBarRef.current.focus();
+      } else setIsHidden(true);
     }
-  });
-
-  // clear the keyDownObj once keys are no longer actively pressed
-  document.addEventListener('keyup', () =>{
-    keyDownObj = {};
-  });
+  }
 
 
-  // componentDidMount and ComponentDidUpdate logic into a function
-  // 
+  // useEffect hook to add and remove the event handler when 'alt' + '
+  useEffect(() => {
+    document.addEventListener('keydown', accessBarHandlerKeyDown);
+    const navNodes = document.querySelectorAll('.accessNavLink');
+    const navValues = {};
+    navNodes.forEach(el => {
+      navValues[el.text] = el.pathname;
+    });
+    setNavInfo(navValues);
+    return () => document.removeEventListener('keydown', accessBarHandlerKeyDown);
+  }, [isHidden]);
 
 
+  // only want to trigger this when the pathName is different
+  useEffect(() => {
+    //  selects all nodes with the aria attribute aria-labelledby
+    const ariaNodes = document.querySelectorAll('[aria-labelledby]');
+    let sectionValues = {};
 
+    ariaNodes.forEach(node => {
+      sectionValues[node.getAttribute('aria-labelledby')] = node.getAttribute('aria-labelledby');
+    });
 
+    setSectionInfo(sectionValues);
+    
+  }, [pathname]);
+  
   // render hidden h1 based on isHidden
   if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
 
@@ -85,10 +97,8 @@ const AccessBar = () => {
   const sectionDropDown = createDropDownValues(sectionInfo);
   const navInfoDropDown = createDropDownValues(navInfo);
 
-
   // render AccessBar if state has changed to hidden
   return (
-
     <div className ='ally-nav-area' style={ barStyle }>
         <div className = 'dropdown' style={ dropDownStyle }> 
           <label htmlFor='component-dropdown' tabIndex='-1' ref={accessBarRef} > Jump to section: </label>
@@ -165,4 +175,4 @@ const hiddenH1Styles = {
 };
 
 // export using withRouter
-export default withRouter(AccessBar);
+export default AccessBar2;
