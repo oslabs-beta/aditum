@@ -22,7 +22,8 @@ FocusWrapper is a function that returns a new component that will wrap around yo
 
 How to use: 
 
-1 .Pass any child component into the FocusWrapper ie component = { FocusWrapper(ChildComponent) }
+1 .Pass any child component into the FocusWrapper ie 
+<Route component = { FocusWrapper(ChildComponent) }>
 
 Note: 
 
