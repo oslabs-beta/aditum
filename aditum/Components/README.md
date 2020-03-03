@@ -18,11 +18,16 @@ How to use:
 
 ## FocusWrapper
 
-FocusWrapper is a higher order component that...
+FocusWrapper is a function that returns a new component that will wrap around your child component and give it the necessary elements to help change focus when the user clicks on a link in React-Router. 
 
-How to use:
+How to use: 
 
-1.
+1 .Pass any child component into the FocusWrapper ie 
+<Route component = { FocusWrapper(ChildComponent) }/>
+
+Note: 
+
+The FocusWrapper only works with React-Router
 
 Co-authored by:
 - [Nicole Abramowski](https://github.com/nabramow)

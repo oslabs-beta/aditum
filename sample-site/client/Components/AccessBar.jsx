@@ -64,7 +64,7 @@ class AccessBar extends Component {
     // finds associated path of clicked element
     let currentPath = this.state.navInfo[e];
     // grabs all of the nav links in the nav bar
-    const accessLinks = document.querySelectorAll('.accessNavLinks');
+    const accessLinks = document.querySelectorAll('.accessNavLink');
     // loops through to find the matching path
     accessLinks.forEach(el => {
       if (el.pathname === currentPath) {
@@ -118,7 +118,7 @@ class AccessBar extends Component {
     });
 
     // grabs the nodes from the navigation bar
-    const navNodes = document.querySelectorAll('.accessNavLinks')
+    const navNodes = document.querySelectorAll('.accessNavLink')
     
     // initialize empty object for nav links
     const navValues = {};
