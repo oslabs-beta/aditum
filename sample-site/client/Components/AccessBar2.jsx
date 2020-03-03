@@ -54,7 +54,11 @@ const AccessBar2 = () => {
   }
 
 
-  // useEffect hook to add and remove the event handler when 'alt' + '
+  /**
+   *
+   * useEffect hook to add and remove the event handler when 'alt' + '/' are pressed  
+   * prior to this, multiple event handlers were being added on each button press 
+   * */ 
   useEffect(() => {
     document.addEventListener('keydown', accessBarHandlerKeyDown);
     const navNodes = document.querySelectorAll('.accessNavLink');
@@ -67,20 +71,26 @@ const AccessBar2 = () => {
   }, [isHidden]);
 
 
-  // only want to trigger this when the pathName is different
+  /**
+   * @todo figure out how to change the dropdown current value after click
+   */
   useEffect(() => {
     //  selects all nodes with the aria attribute aria-labelledby
-    const ariaNodes = document.querySelectorAll('[aria-labelledby]');
-    let sectionValues = {};
-
-    ariaNodes.forEach(node => {
-      sectionValues[node.getAttribute('aria-labelledby')] = node.getAttribute('aria-labelledby');
-    });
-
-    setSectionInfo(sectionValues);
+    setTimeout(() => {
+      const ariaNodes = document.querySelectorAll('[aria-labelledby]');
+      let sectionValues = {};
+  
+      ariaNodes.forEach(node => {
+        sectionValues[node.getAttribute('aria-labelledby')] = node.getAttribute('aria-labelledby');
+      });
+  
+      setSectionInfo(sectionValues);
+    }, 500);
     
   }, [pathname]);
   
+
+
   // render hidden h1 based on isHidden
   if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
 
