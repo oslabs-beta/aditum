@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
-import AccessBarWithRouter from '../src/AccessBarWithRouter.jsx';
+import OriginalAccessBar from '../src/OriginalAccessBar.jsx';
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -14,27 +14,26 @@ Enzyme.configure({ adapter: new Adapter() });
  * itself
  */
 
-describe('AccessBar component', () => {
+describe('OriginalAccessBar component', () => {
   it('renders hidden h1 upon initial page load (this.state.isHidden = true)', () => {
     // set dummy location within test to avoid location.pathname is undefined error
     const location = { pathname: '/' };
     const wrapper = shallow(
-      <AccessBarWithRouter.WrappedComponent location={location}/>
+      <OriginalAccessBar.WrappedComponent location={location}/>
   );
-    // if AccessBar is hidden it should only render our invisible h1
-    // expect(wrapper.exists('#hiddenH1')).toEqual(true);
-    console.log(wrapper.debug());
+    // if OriginalAccessBar is hidden it should only render our invisible h1
+    expect(wrapper.exists('#hiddenH1')).toEqual(true);
   })
-  it('renders full AccessBar when this.state.isHidden is false', () => {
+  it('renders full OriginalAccessBar when this.state.isHidden is false', () => {
     // set dummy location within test to avoid location.pathname is undefined error
     const location = { pathname: '/' };
     const wrapper = mount(
-        <AccessBarWithRouter.WrappedComponent location={location} />
+        <OriginalAccessBar.WrappedComponent location={location} />
     );
     wrapper.setState({ isHidden: false }, () => {
       // If AccessBar is not hidden the outermost div of the visible bar should be there
       // Test within setState waits for state change before running test
-      // expect(wrapper.exists('.ally-nav-area')).toEqual(true);
+      expect(wrapper.exists('.ally-nav-area')).toEqual(true);
     });
   });
 });
