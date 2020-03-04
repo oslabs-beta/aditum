@@ -35,7 +35,13 @@ AccessBar is an accessibility bar that becomes visible with the command Alt + / 
 
 **How to use (both with and without React Router versions):** 
 
-1. Add an "aria-labelledby" property to all HTML/JSX elements you want to show up in the first dropdown menu and set the value to the name you would like the user to see/hear/have read aloud. For example:
+1. Import the components you need with curly brackets as such:
+
+```javascript
+import { AccessBarWithRouter, AccessBarNoRouter, FocusWrapper, OriginalAccessBar } from 'aditum';
+```
+
+2. Add an "aria-labelledby" property to all HTML/JSX elements you want to show up in the first dropdown menu and set the value to the name you would like the user to see/hear/have read aloud. For example:
 
 ```javascript
 <section id='photo-sb' aria-labelledby="Photos Sidebar">
@@ -63,6 +69,7 @@ if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigatio
 #### Using AccessBar without React Router
 
 1. Add the `<AccessBarNoRouter />`component above the top most component in your main container, for example above your navbar or header.
+
 
 ### FocusWrapper
 
