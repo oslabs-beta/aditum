@@ -43,7 +43,7 @@ AccessBar is an accessibility bar that becomes visible with the command Alt + / 
 </section>
 ```
 
-**Note:** While AccessBar is hidden, an invisible `<h1>´element is rendered as the first element on the page, which will prompt users using a VoiceOver assistive device to press the command to toggle the AccessBar. For reference:
+**Note:** While AccessBar is hidden, an invisible `<h1>` element is rendered as the first element on the page, which will prompt users using a VoiceOver assistive device to press the command to toggle the AccessBar. For reference:
 
 ```javascript
 if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
