@@ -36,7 +36,7 @@ import AccessBarWithRouter from 'aditum';
 
 AccessBar is an accessibility bar that becomes visible with the command Alt + / and allows users to jump between active components on the page via a dynamically populated dropdown menu.
 
-![AccessBar location after Alt + / command makes it visible](https://github.com/oslabs-beta/aditum/blob/dev/images/AccessBar-Enabled.png)
+![How AccessBar looks and works](https://github.com/oslabs-beta/aditum/blob/dev/images/AccessBar-Video.gif)
 
 **How to use (both with and without React Router versions):** 
 
