@@ -15,18 +15,19 @@ The following components are currently included:
 
 Simply use npm to install the package:
 
-´´´
+```
 // npm
 $ npm install aditum
 // Yarn
 $ yarn add aditum
-´´´
+```
 
 You can then include the components you need in your project:
 
-´´´
+```
 import AccessBarWithRouter from 'aditum';
-´´´
+````
+
 ## Usage
 
 ### AccessBar
@@ -44,14 +45,15 @@ AccessBar is an accessibility bar that becomes visible with the command Alt + / 
 
 **Note:** While AccessBar is hidden, an invisible `<h1>´element is rendered as the first element on the page, which will prompt users using a VoiceOver assistive device to press the command to toggle the AccessBar. For reference:
 
-´´´javascript
+```javascript
 if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
-´´´
+```
+
 **Note for non-English/US keyboards**: The command Alt + / works on the US keyboard, but at this time will not work on keyboards that require a shift, command or other additional key to make the forward-slash.
 
 #### Using AccessBar with React Router
 
-1. Add the `<AccessBarWithRouter />`component above the top most component in your main container, for example above your navbar or header.
+1. Add the `<AccessBarWithRouter />` component above the top most component in your main container, for example above your navbar or header.
 2. To populate the second dropdown menu with other pages on your site, add a `className` property with the value `accessNavLink` to each React Router `<Link>`. For example:
 
   ```javascript
@@ -62,7 +64,7 @@ if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigatio
 
 #### Using AccessBar without React Router
 
-1. Add the `<AccessBarNoRouter />`component above the top most component in your main container, for example above your navbar or header.
+1. Add the `<AccessBarNoRouter />` component above the top most component in your main container, for example above your navbar or header.
 
 ### FocusWrapper
 
