@@ -111,13 +111,15 @@ const barStyle =  {
   paddingBottom: '.1em',
   paddingLeft: '5em',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   zIndex: '100',
   position: 'sticky',
+  top: '0',
+  width: '100%',
   fontSize: '.8em',
-  backgroundColor: 'gray',
-  fontFamily: 'Roboto',
-  color: 'white'
+  backgroundColor: 'lightblue',
+  fontFamily: 'montserrat',
+  color: '#373D3F'
 };
 
 const dropDownStyle = {
