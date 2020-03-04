@@ -103,6 +103,7 @@ We love changes and are always looking to make our project better! For major cha
 * Better support for non-English/US keyboards
 * Setting the page title dynamically
 * Increased support for React Hooks in testing
+* Resetting the dropdown current value to default after selection
 
 ## License
 
