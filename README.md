@@ -2,7 +2,7 @@
 
 ![](https://github.com/oslabs-beta/aditum/blob/dev/images/Final_aditum.png)
 
-Aditum is a custom React component library to support developers in writing accessible and WAI-ARIA compliant single page applications (SPAs). In React SPAs, there is no page load after the initial one. When the content gets updated without a page load, screen reading software has no idea by default, leading to a confusing experience and potential lost customers for users interacting with the site via a screen reader.
+Aditum is a custom React component library to support developers in writing accessible and [WAI-ARIA](https://www.w3.org/WAI/standards-guidelines/aria/) compliant single page applications (SPAs). In React SPAs, there is no page load after the initial one. When the content gets updated without a page load, screen reading software has no idea by default, leading to a confusing experience and potential lost customers for users interacting with the site via a screen reader.
 
 Setting the focus manually can be tedious, especially for larger applications. Aditum provides a more automated solution to guide focus across your application to provide a better experience for users accessing your site via a screen reader.
 
