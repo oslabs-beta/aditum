@@ -24,7 +24,7 @@ $ yarn add aditum
 
 You can then include the components you need in your project:
 
-```
+```javascript
 import AccessBarWithRouter from 'aditum';
 ````
 
