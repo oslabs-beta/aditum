@@ -8,26 +8,47 @@ Currently consists of the following components:
 
 The AccessBar is an accessibility bar that becomes visible with the command alt + / (on US keyboard) and allows users to jump between active components on the page via a dynamically populated dropdown menu.
 
-How to use: 
+How to use (both with and without React Router versions): 
 
-1. Add an "aria-labelledby" property to all HTML/JSX elements you want to show up in the dropdown menu and set the value to the name you would like the user to see/hear/have read aloud. For example:
+1. Add an "aria-labelledby" property to all HTML/JSX elements you want to show up in the first dropdown menu and set the value to the name you would like the user to see/hear/have read aloud. For example:
 
-`aria-labelledby="Photos Sidebar"``
+```javascript
+<section id='photo-sb' aria-labelledby="Photos Sidebar">
+</section>
+```
 
-2. Add the `<AccessBar />`component above the top most component in your main container, for example above your navbar or header.
+### Using AccessBar with React Router
+
+1. Add the `<AccessBarWithRouter />`component above the top most component in your main container, for example above your navbar or header.
+2. To populate the second dropdown menu with other pages on your site, add a `className` property with the value `accessNavLink` to each React Router `<Link>`. For example:
+
+  ```javascript
+  <Link className='accessNavLink' to="/">
+    <li>Home</li>
+  </Link>
+  ```
+
+### Using AccessBar without React Router
+
+1. Add the `<AccessBarNoRouter />`component above the top most component in your main container, for example above your navbar or header.
 
 ## FocusWrapper
 
-FocusWrapper is a function that returns a new component that will wrap around your child component and give it the necessary elements to help change focus when the user clicks on a link in React-Router. 
+FocusWrapper is a higher order component that adds focus management capabilities in conjunction with React Router. It moves focus to your page content on route transition.
+
+FocusWrapper works by wrapping a div around your specified component and imperatively shifting focus to that div.
 
 How to use: 
 
-1 .Pass any child component into the FocusWrapper ie 
-<Route component = { FocusWrapper(ChildComponent) }/>
+1. Pass any child component into the FocusWrapper, for example:
 
-Note: 
+```javascript
+const focusedComponent = focusWrapper(ChildComponent)
 
-The FocusWrapper only works with React-Router
+<Route component = { focusedComponent }/>
+```
+
+**Note:** FocusWrapper only works with React-Router.
 
 Co-authored by:
 - [Nicole Abramowski](https://github.com/nabramow)
