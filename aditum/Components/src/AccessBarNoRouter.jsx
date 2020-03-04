@@ -16,23 +16,27 @@ const AccessBarNoRouter = () => {
   const sectionRef = useRef(null);
   const accessBarRef = useRef(null);
   
-  
-  // sets focus on the current page from the 1st dropdown
+
+  // method to set focus to component selected from dropdown
   const setFocus = e => {
+    // sets current label to the aria-labelledby attribute associated with dropdown link
     const currentLabel = sectionInfo[e];
+    // finds associated section of the page
     const currentElement = document.querySelector(`[aria-labelledBy='${currentLabel}']`);
+    // adding tab index and ref to currentElement so we can jump focus to it
     currentElement.tabIndex = -1;
     sectionRef.current = currentElement;
-    // can put a .click() after focus to focus with the enter button
-    // works, but gives error
     sectionRef.current.focus();
   };
 
   // event handler to toggle visibility of AccessBar and set focus to it
   const accessBarHandlerKeyDown = e => {
-    if (e.altKey && e.keyCode === 191) {
+    // checking if both alt key and / key are pressed 
+    if (e.altKey && (e.keyCode === 191 || e.keyCode === 246)) {
+      // if so, toggle isHidden boolean to conditionally render our access bar
       if (isHidden) {
         setIsHidden(false)
+        // immediately shift focus to access bar
         accessBarRef.current.focus();
       } else setIsHidden(true);
     }
@@ -51,18 +55,22 @@ const AccessBarNoRouter = () => {
 
 
   /**
-   * @todo figure out how to change the dropdown current value after click
+   * useEffect hook to dynamically fill dropdown with content sections
    */
   useEffect(() => {
-    //  selects all nodes with the aria attribute aria-labelledby
+    // selects all nodes with the aria attribute aria-labelledby
+    // setTimeout to account for asynchronous rendering
     setTimeout(() => {
+      // saving all components with an aria-labelledby attribute in an array
       const ariaNodes = document.querySelectorAll('[aria-labelledby]');
+      // initialize a values object for Aria dropdown
       let sectionValues = {};
-  
+      // iterate through ariaNodes to store values in sectionValues object
       ariaNodes.forEach(node => {
         sectionValues[node.getAttribute('aria-labelledby')] = node.getAttribute('aria-labelledby');
       });
-  
+
+      // add sectionValues to state
       setSectionInfo(sectionValues);
     }, 500);
     
@@ -70,10 +78,10 @@ const AccessBarNoRouter = () => {
   
 
 
-  // render hidden h1 based on isHidden
+  // render hidden h1 if isHidden is true
   if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
 
-  // function to create dropDownKeys and navKeys 
+  // function to create dropDownKeys 
   const createDropDownValues = dropDownObj => {
     const dropdownKeys = Object.keys(dropDownObj);
     const options = [];
@@ -85,7 +93,7 @@ const AccessBarNoRouter = () => {
 
   const sectionDropDown = createDropDownValues(sectionInfo);
 
-  // render AccessBar if state has changed to hidden
+  // render AccessBar if isHidden has changed to false
   return (
     <div className ='ally-nav-area' style={ barStyle }>
         <div className = 'dropdown' style={ dropDownStyle }> 
@@ -118,7 +126,7 @@ const barStyle =  {
   width: '100%',
   fontSize: '.8em',
   backgroundColor: 'lightblue',
-  fontFamily: 'montserrat',
+  fontFamily: 'montserrat, Sans-Serif',
   color: '#373D3F'
 };
 
