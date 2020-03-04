@@ -5,65 +5,43 @@
  * 
  */
 
- import React, { Component } from 'react';
- import Product from './Product.jsx';
+ import React from 'react';
  
  // the store component that will be displayed on route
- export default class Store extends Component {
+const Store = (props) => {
+  const photoUrls = [
+    'https://i0.wp.com/fullofplants.com/wp-content/uploads/2017/05/vegan-aged-blue-cheese-thumb-300x300.jpg?fit=300%2C300&ssl=1',
+    'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/dairyreporter.com/news/markets/everything-you-wanted-to-know-about-feta/10510021-1-eng-GB/Everything-you-wanted-to-know-about-Feta_wrbm_large.jpg',
+    'https://goldenagecheese.com/wp-content/uploads/2014/01/smoked_gouda-768x512.jpg',
+    'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ihPVg4pIMBxo/v1/1000x-1.jpg'
+  ];
 
-  // fake state for now 
-  constructor() {
-    super()
-
-    this.state = {
-      loading: true,
-    } 
+  const items = [];
+  for (let i = 0; i < photoUrls.length; i += 1) {
+    items.push((
+      <Item photoUrl={photoUrls[i]} itemNo={i+1} />
+    ))
   }
 
+  return (
+    <main id='Store' aria-labelledby='Store'>
+      <h1>Store</h1>
+      <div className='product_container'>
+        { items }
+      </div>
+    </main>
+  )
+}
 
-  // lifecycle methods here will focus the updates
-  componentDidMount() {
-    // will set state to the fetched data from the api
-    fetch('/products')
-    .then(response => response.json())
-    .then(data => {
-      console.log('OUR DATA', data);
-      this.setState({
-        products: data,
-        loading: false,
-      });
-    });
-  }
-  
-  
-  render() {
-    const { loading, products} = this.state;
+const Item = (props) => {
+  const { photoUrl, itemNo } = props;
+  return (
+    <div className='product'>
+      <img className='productImg' src={photoUrl} alt='cheese'></img>
+      <h1>Item {itemNo}</h1>
+      <p>Swiss melted cheese paneer. Emmental port-salut cheese and wine fromage frais cheese slices emmental taleggio hard cheese. Feta port-salut boursin dolcelatte when the cheese comes out everybody's happy cheese slices croque monsieur gouda. Cheesy grin smelly cheese stinking bishop cheeseburger st. agur blue cheese say cheese cheeseburger airedale. Halloumi croque monsieur.</p>
+    </div>
+  )
+}
 
-    // create products array, and render the fake products
-    if (loading) {
-      return (
-        <h3 aria-labelledby="loading-baby">We loading baby</h3>
-      );
-    }
-
-    else {
-      const productsArr = [];
-      for (let i = 0; i < products.length; i += 1) {
-        const { id, name, description, price, inventory} = products[i];
-        productsArr.push(
-        <Product id={id} name={name} description={description} price={price} inventory={inventory}/>
-        );
-      }
-
-      return (
-        <main id='adistore' aria-labelledby='ADISTORE'>
-          <h2 className='currentPageTitle'>AdiStore</h2>
-          <div className='product_container'>
-          { productsArr }
-          </div>
-        </main>
-      )
-    }
-
-  }
- }
+export default Store;

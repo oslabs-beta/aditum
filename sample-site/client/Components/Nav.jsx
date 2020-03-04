@@ -14,12 +14,6 @@ const Nav = () => {
         <Link className="linkColor" className='accessNavLink' to="/store">
           <li>Store</li>
         </Link>
-        {/* <Link className="linkColor">
-          <li>Cart</li>
-        </Link>
-        <Link className="linkColor">
-          <li>Review</li>
-        </Link> */}
       </ul>
     </nav>
   )
