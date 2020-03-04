@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/oslabs-beta/aditum#readme",
   "dependencies": {
-    "react-dropdown-aria": "^1.51",
+    "react-dropdown-aria": "^1.5.1"
   }
 }

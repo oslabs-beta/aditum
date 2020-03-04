@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "npx babel ./src --watch --out-dir ./dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose",
+    "test:watch": "jest --watchAll --verbose",
+    "test:coverage": "jest --verbose --coverage",
     "prepublish": "babel ./src --out-dir ./dist"
   },
   "repository": {
@@ -27,7 +29,8 @@
   "homepage": "https://github.com/oslabs-beta/aditum#readme",
   "dependencies": {
     "react-dropdown-aria": "^1.5.1",
-    "react-router": "^5.1.2"
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2"
   },
   "peerDependencies": {
     "react": "^16.13.0",
@@ -36,7 +39,15 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.6",
+    "@babel/polyfill": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.8.6",
-    "@babel/preset-react": "^7.8.3"
+    "@babel/preset-react": "^7.8.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^25.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^25.1.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   }
 }

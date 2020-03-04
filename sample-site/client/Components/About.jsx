@@ -2,12 +2,9 @@
  * @description About page for our mock store to test React focus management
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 
-class About extends Component {
-
-
-  render() {
+const About = () => {
     return (
       <div id='about'>
         <img id='coffee' src='https://images.unsplash.com/photo-1518966377293-74c63a1ec149?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2800&q=80' alt='person pouring coffee into mug' aria-labelledby='Coffee Image'></img>
@@ -23,7 +20,5 @@ class About extends Component {
         </div>
       </div>
     )
-  }
 }
-
 export default About;

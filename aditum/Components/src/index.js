@@ -1,4 +1,7 @@
-import AccessBar from '../dist/AccessBar.js';
-import FocusWrapper from '../dist/FocusWrapper.js';
+import AccessBarWithRouter from "../dist/AccessBarWithRouter.jsx";
+import AccessBarNoRouter from "../dist/AccessBarNoRouter.jsx";
+import FocusWrapper from "../dist/FocusWrapper.jsx";
+import OriginalAccessBar from "../OriginalAccessBar.jsx";
 
-export { AccessBar, FocusWrapper };
+// Original accessbar still in files
+export { AccessBarWithRouter, AccessBarNoRouter, FocusWrapper, OriginalAccessBar };

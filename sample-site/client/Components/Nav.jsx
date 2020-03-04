@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Nav() {
+const Nav = () => {
   return (
     <nav>
       <ul className="nav-links">
-        <Link className="linkColor" to="/">
+        <Link className="linkColor" className='accessNavLink' to="/">
           <li>Home</li>
         </Link>
-        <Link className="linkColor" to="/about">
+        <Link className="linkColor" className='accessNavLink' to="/about">
           <li>About</li>
         </Link>
-        <Link className="linkColor" to="/store">
+        <Link className="linkColor" className='accessNavLink' to="/store">
           <li>Store</li>
         </Link>
         {/* <Link className="linkColor">
@@ -24,5 +24,4 @@ function Nav() {
     </nav>
   )
 }
-
 export default Nav;
