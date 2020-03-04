@@ -100,10 +100,9 @@ We love changes and are always looking to make our project better! For major cha
 
 *Currently on our to-do list:*
 
-* Better support for non-Englush/US keyboards
+* Better support for non-English/US keyboards
 * Setting the page title dynamically
-* Tests for AccessBarWithRouter that are compatible with React Hooks
-* Tests for AccessBarNoRouter
+* Increased support for React Hooks in testing
 
 ## License
 
