@@ -9,7 +9,7 @@ Setting the focus manually can be tedious, especially for larger applications. A
 The following components are currently included:
 
 * AccessBarWithRouter - for applications using React Router
-* AccessBarWithRouter - for applications without React Router
+* AccessBarNoRouter - for applications without React Router
 * Original AccessBar - version of the application without React Hooks
 * FocusWrapper - a HOC that switches focus to any component you supply as an argument
 
