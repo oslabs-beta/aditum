@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+/**
+ * Higher order component that takes in a child component and returns a new component with the necessary attributes 
+ */
+
 
 function focusWrapper(WrappedComponent){
   class accessibility extends Component {
@@ -14,7 +18,8 @@ function focusWrapper(WrappedComponent){
         </div>
       )
     }
-  } return accessibility;
+  } 
+  return accessibility;
 }
 
 export default focusWrapper;

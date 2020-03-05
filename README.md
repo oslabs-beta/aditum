@@ -1,6 +1,6 @@
 # aditum
 
-![](https://github.com/oslabs-beta/aditum/blob/dev/images/Final_aditum.png)
+![](https://raw.githubusercontent.com/oslabs-beta/aditum/dev/images/Final_aditum.png)
 
 Aditum is a custom React component library to support developers in writing accessible and [WAI-ARIA](https://www.w3.org/WAI/standards-guidelines/aria/) compliant single page applications (SPAs). In React SPAs, there is no page load after the initial one. When the content gets updated without a page load, screen reading software has no idea by default, leading to a confusing experience and potential lost customers for users interacting with the site via a screen reader.
 
@@ -36,7 +36,7 @@ import AccessBarWithRouter from 'aditum';
 
 AccessBar is an accessibility bar that becomes visible with the command Alt + / and allows users to jump between active components on the page via a dynamically populated dropdown menu.
 
-![How AccessBar looks and works](https://github.com/oslabs-beta/aditum/blob/dev/images/AccessBar-Video.gif)
+![How AccessBar looks and works](https://github.com/oslabs-beta/aditum/blob/dev/images/AccessBar-Video.gif?raw=true)
 
 **How to use (both with and without React Router versions):** 
 

@@ -3,26 +3,6 @@
  * importing an aria-compliant dropdown package
  * able to target focus with the setSelected option in that package
  * 
- * 
- * @todo Be able to show on combination of button presses (done)
- * @todo Conditional rendering inside the render method that initially renders an h1 that tells screen readers how to use the navigation bar (done)
- * 
- * @todo Be able to switch color themes for colorblind/ high contrast 
- * @todo Route handling dropdown for other pages on site
- * @todo Dynamically filling the aria-labels 
- * 
- * 
- * @notes The way the fb accessbar works is that: 
- * 1. first tab shows the bar and focuses to it
- * 2. next tabs exit the fb access bar and moves to correct elements on page
- * 3. to unhide the bar and refocus, press option + '/'
- * 
- * 
- *  Handling dynamic filling
- *  1.Developer should use aria-labelledby to denote sections of the page they want to transfer focus to
- *  2. Can use document.querySelector('[aria-labelledBy]) to grab an element with that attribute
- * 
- * 
  *
 */
 import React, { Component } from 'react';
