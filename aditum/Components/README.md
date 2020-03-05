@@ -1,6 +1,8 @@
 # aditum
 
-Aditum is a custom React component library to support developers in writing accessible and WAI-ARIA compliant single page applications (SPAs). In React SPAs, there is no page load after the initial one. When the content gets updated without a page load, screen reading software has no idea by default, leading to a confusing experience and potential lost customers for users interacting with the site via a screen reader.
+![](https://github.com/oslabs-beta/aditum/blob/dev/images/Final_aditum.png)
+
+Aditum is a custom React component library to support developers in writing accessible and [WAI-ARIA](https://www.w3.org/WAI/standards-guidelines/aria/) compliant single page applications (SPAs). In React SPAs, there is no page load after the initial one. When the content gets updated without a page load, screen reading software has no idea by default, leading to a confusing experience and potential lost customers for users interacting with the site via a screen reader.
 
 Setting the focus manually can be tedious, especially for larger applications. Aditum provides a more automated solution to guide focus across your application to provide a better experience for users accessing your site via a screen reader.
 
@@ -15,49 +17,47 @@ The following components are currently included:
 
 Simply use npm to install the package:
 
-´´´
+```
 // npm
 $ npm install aditum
 // Yarn
 $ yarn add aditum
-´´´
+```
 
 You can then include the components you need in your project:
 
-´´´
+```javascript
 import AccessBarWithRouter from 'aditum';
-´´´
+````
+
 ## Usage
 
 ### AccessBar
 
 AccessBar is an accessibility bar that becomes visible with the command Alt + / and allows users to jump between active components on the page via a dynamically populated dropdown menu.
 
+![How AccessBar looks and works](https://github.com/oslabs-beta/aditum/blob/dev/images/AccessBar-Video.gif)
+
 **How to use (both with and without React Router versions):** 
 
-1. Import the components you need with curly brackets as such:
-
-```javascript
-import { AccessBarWithRouter, AccessBarNoRouter, FocusWrapper, OriginalAccessBar } from 'aditum';
-```
-
-2. Add an "aria-labelledby" property to all HTML/JSX elements you want to show up in the first dropdown menu and set the value to the name you would like the user to see/hear/have read aloud. For example:
+1. Add an "aria-labelledby" property to all HTML/JSX elements you want to show up in the first dropdown menu and set the value to the name you would like the user to see/hear/have read aloud. For example:
 
 ```javascript
 <section id='photo-sb' aria-labelledby="Photos Sidebar">
 </section>
 ```
 
-**Note:** While AccessBar is hidden, an invisible `<h1>´element is rendered as the first element on the page, which will prompt users using a VoiceOver assistive device to press the command to toggle the AccessBar. For reference:
+**Note:** While AccessBar is hidden, an invisible `<h1>` element is rendered as the first element on the page, which will prompt users using a VoiceOver assistive device to press the command to toggle the AccessBar. For reference:
 
-´´´javascript
+```javascript
 if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigation assistant, press alt + /.</h1>;
-´´´
+```
+
 **Note for non-English/US keyboards**: The command Alt + / works on the US keyboard, but at this time will not work on keyboards that require a shift, command or other additional key to make the forward-slash.
 
 #### Using AccessBar with React Router
 
-1. Add the `<AccessBarWithRouter />`component above the top most component in your main container, for example above your navbar or header.
+1. Add the `<AccessBarWithRouter />` component above the top most component in your main container, for example above your navbar or header.
 2. To populate the second dropdown menu with other pages on your site, add a `className` property with the value `accessNavLink` to each React Router `<Link>`. For example:
 
   ```javascript
@@ -68,8 +68,7 @@ if (isHidden) return <h1 id='hiddenH1' style={hiddenH1Styles}>To enter navigatio
 
 #### Using AccessBar without React Router
 
-1. Add the `<AccessBarNoRouter />`component above the top most component in your main container, for example above your navbar or header.
-
+1. Add the `<AccessBarNoRouter />` component above the top most component in your main container, for example above your navbar or header.
 
 ### FocusWrapper
 
@@ -101,7 +100,10 @@ We love changes and are always looking to make our project better! For major cha
 
 *Currently on our to-do list:*
 
-* Better support for non-Englush/US keyboards
+* Better support for non-English/US keyboards
 * Setting the page title dynamically
-* Tests for AccessBarWithRouter that are compatible with React Hooks
-* Tests for AccessBarNoRouter
+* Increased support for React Hooks in testing
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
